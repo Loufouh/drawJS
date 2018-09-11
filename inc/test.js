@@ -8,5 +8,5 @@ function init() {
 	canvas = document.querySelector("canvas");
 	setTargetContext(canvas.getContext("2d"));
 
-	background(new RGBColor(150, 62, 62));
+	background(Color.hsla(140, 100, 50, 0.5));
 }
