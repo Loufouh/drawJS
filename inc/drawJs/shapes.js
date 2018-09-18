@@ -35,18 +35,22 @@ function rect(xLeft, yTop, width, height, ctx=targetContext) {
 }
 
 function grid(pos, scales, separators, dimensions) {
-	for(let i = pos.x ; i <= (pos.x + dimensions.x); i += scales.x) {
+	for(let i = pos.x ; i <= (pos.x + dimensions.x - 1); i += scales.x) {
 		line(i, pos.y, i, (pos.y + dimensions.y));
 		i += separators.x;
 		line(i, pos.y, i, (pos.y + dimensions.y));
 	}
 
-	for(let j = pos.y ; j <= (pos.y + dimensions.y); j += scales.y) {
+	for(let j = pos.y ; j <= (pos.y + dimensions.y - 1); j += scales.y) {
 		line(pos.x, j, (pos.x + dimensions.x), j);
 		j += separators.y;
 		line(pos.x, j, (pos.x + dimensions.x), j);
 	}
+
+	line(pos.x + dimensions.x, pos.y, pos.x + dimensions.x, pos.y + dimensions.y);
+	line(pos.x, pos.y + dimensions.y, pos.x + dimensions.x, pos.y + dimensions.y);
 }
+
 
 function line(x1, y1, x2, y2, ctx=targetContext) {
 	ctx.beginPath();
