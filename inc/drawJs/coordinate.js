@@ -16,3 +16,14 @@ function rotate(angle, ctx=targetContext) {
 	ctx.rotate(angle);
 }
 
+function scale(x, y, ctx=targetContext) {
+	ctx.scale(x, y);	
+}
+
+function save(ctx=targetContext) {
+	ctx.save();
+}
+
+function restore(ctx=targetContext) {
+	ctx.restore();	
+}
