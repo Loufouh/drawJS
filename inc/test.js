@@ -14,16 +14,16 @@ function init() {
 
 	let imgData = createImageData(100, 500);
 
-	for(let i = 0; i < imgData.data.length; i += 4) {
-		imgData.data[i] = randomInt();
-		imgData.data[i + 1] = pickComposant();
-		imgData.data[i + 2] = pickComposant();
-		imgData.data[i + 3] = 255;
+	for(let y = 0; y < imgData.height; y++) {		
+		for(let x = 0; x < imgData.width; x++) {
+			setPixel(x, y, imgData, pickColor());
+		}
 	}
-
 	putImageData(imgData, 600, 100);
 }
 
-function pickComposant() {
-	return 51*Math.floor(Math.random()*6);
+function pickColor() {
+	return new Color( 51*Math.floor(Math.random()*6),
+			  51*Math.floor(Math.random()*6),
+			  51*Math.floor(Math.random()*6) );
 }
