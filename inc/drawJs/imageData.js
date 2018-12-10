@@ -36,5 +36,5 @@ function getPixelIndex(x, y, imgData) {
 	if(y < 0 || y >= imgData.height)
 		return error("y has a wrong value ! (" + y + ")", 0);
 
-	return y*imgData.width + x*4;
+	return 4*y*imgData.width + x*4;
 }
