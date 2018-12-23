@@ -25,7 +25,7 @@ There is two ways to create a color :
 
 #### rgb/rgba
 If you don't know the rgba color system, this wikipedia page will help you : 
-<a href="https://en.wikipedia.org/wiki/RGBA_color_space" target="_blank">RGBA color space</a>.<br>
+[RGBA color space](https://en.wikipedia.org/wiki/RGBA_color_space).<br>
 The complete way to create a rgba color is to specify all the parameters in the constructor `Color(r, g, b, a, type)` :
 ```javascript
 let color = new Color(255, 52, 52, 1, ColorType.RGB);
@@ -38,8 +38,7 @@ But hopefully, there are some shortcuts ! :
 `new Color(255, 52)` → `new Color(255, 52, 52)`
 
 #### hsl/hsla
-There is a wikipedia page about the hsla system :
-<a href="https://en.wikipedia.org/wiki/HSL_and_HSV" target="_blank">HSL and HSV</a>.<br>
+There is a wikipedia page about the hsla system : [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV).<br>
 This time, there are no shortcuts, you have to specify all of the parameters each time :
 ```javascript
 let color = new Color(240, 100, 60, ColorType.HSL);
