@@ -30,7 +30,7 @@ The complete way to create a rgba color is to specify all the parameters in the 
 ```javascript
 let color = new Color(255, 52, 52, 1, ColorType.RGB);
 ```
-But hopefully, there are some shortcuts ! :
+But hopefully, there are some shortcuts :
 - When you use the rgba system, you don't have to specify the type : `new Color(r, g, b, a)`
 - When you want a color with an opacity of 1, you could write it like this : `new Color(r, g, b)`
 - And if you want to use the same value for the lasts parameters, it will be repeated automatically :<br>
@@ -39,7 +39,7 @@ But hopefully, there are some shortcuts ! :
 
 #### hsl/hsla
 There is a wikipedia page about the hsla system : [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV).<br>
-This time, there are no shortcuts, you have to specify all of the parameters each time :
+This time, there are no shortcuts, you have to specify all of the parameters each time `new Color(h, s, l, a, type)`:
 ```javascript
 let color = new Color(240, 100, 60, ColorType.HSL);
 ```
