@@ -50,3 +50,7 @@ This time, there are no shortcuts, you have to specify all of the parameters eac
 ```javascript
 let color = new Color(240, 100, 60, ColorType.HSL);
 ```
+
+### Draw on the canvas
+To draw on the canvas, you can first define the colors (the default color is the black). To define the color of the stroke, you have to you use `stroke(color)`, and to define the color that will fill the shape, you have to use `fill(color)`. If you don't want to draw the stroke or to fill the shape, you can use `noFill()` and `noStroke()` (to draw again, you just have to specify a color).<br><br>
+There are two other functions that use the color : `background(color)` and `border(color)`, the first fill the whole canvas with the specified color, and the other one will outline it.
