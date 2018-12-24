@@ -10,7 +10,7 @@ And then to import it you have to put this line in your html page :
 ```
 
 ### Target a context
-To focus on the canvas to use, you have to call the function `setTargetContext(ctx)`.
+To focus on the canvas to use, you have to call the function `setTargetContext(ctx)`.<br>
 Example : 
 ```javascript
 window.onload = function() {
@@ -18,6 +18,13 @@ window.onload = function() {
 	setTargetContext(canvas.getContext("2d"));
 }
 ```
+
+<strong>To use another context, you have to change the focus or to specify it as the last parameter : </strong>
+	
+```javascript
+	rect(0, 0, 100, 100, ctx);
+```
+
 
 ### Create a color
 To create a color, this lib contains the class `Color`.<br>
