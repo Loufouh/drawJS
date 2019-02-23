@@ -17,11 +17,7 @@ function init() {
 
 	let imgData = createImageData(100, 500);
 
-	for(let y = 0; y < imgData.height; y++) {		
-		for(let x = 0; x < imgData.width; x++) {
-			setPixel(x, y, imgData, pickColor());
-		}
-	}
+	mapImageData(imgData, pickColr);
 	putImageData(imgData, 600, 100);
 }
 
