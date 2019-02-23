@@ -10,6 +10,18 @@ function drawShape(ctx=targetContext) {
 		ctx.stroke();
 } 
 
+function createLinearGradient(x1, y1, x2, y2, ctx=targetContext) {
+	return ctx.createLinearGradient(x1, y1, x2, y2);
+}
+
+function fillGradient(gradient, ctx=targetContext) {
+	ctx.fillStyle = gradient;
+}
+
+function strokeGradient(gradient, ctx=targetContext) {
+	ctx.strokeStyle = gradient;
+}
+
 function fill(color, ctx=targetContext) {
 	if( !(color instanceof Color) )
 		color = new Color(color);

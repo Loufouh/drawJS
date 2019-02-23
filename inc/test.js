@@ -24,6 +24,18 @@ function init() {
 
 	mapImageData(imgData, pickColor);
 	putImageData(imgData, 600, 100);
+
+	let linearGradient = createLinearGradient(10, 525, 510, 675);
+	
+	linearGradient.addColorStop(0.25, 'hsl(200, 100%, 10%)');
+	linearGradient.addColorStop(0.3, 'rgb(100, 255, 10)');
+	linearGradient.addColorStop(0.75, 'rgb(255, 15, 10)');
+	linearGradient.addColorStop(1, 'hsl(200, 100%, 10%)');
+	
+	noStroke();
+	fillGradient(linearGradient);
+
+	rect(10, 525, 500, 150);
 }
 
 function pickColor() {
