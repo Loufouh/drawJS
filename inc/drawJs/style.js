@@ -3,6 +3,13 @@
 let isStroking = true;
 let isFilling = true;
 
+function drawShape(ctx=targetContext) {
+	if(isFilling)
+		ctx.fill();
+	if(isStroking)
+		ctx.stroke();
+}
+
 function fill(color, ctx=targetContext) {
 	if( !(color instanceof Color) )
 		color = new Color(color);
@@ -43,12 +50,5 @@ function lineJoin(type, ctx=targetContext) {
 
 function miterLimit(value, ctx=targetContext) {
 	ctx.miterLimit = value;
-}
-
-function drawShape(ctx=targetContext) {
-	if(isFilling)
-		ctx.fill();
-	if(isStroking)
-		ctx.stroke();
 }
 
