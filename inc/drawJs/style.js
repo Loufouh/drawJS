@@ -52,3 +52,6 @@ function miterLimit(value, ctx=targetContext) {
 	ctx.miterLimit = value;
 }
 
+function setLineDash(segments, ctx=targetContext) {
+	ctx.setLineDash(segments);
+}

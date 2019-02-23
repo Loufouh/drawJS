@@ -15,6 +15,10 @@ function init() {
 
 	grid(new Vector(100, 100), new Vector(51, 51), new Vector(0, 0), new Vector(400, 400))
 
+	setLineDash([5, 10]);
+
+	line(10, 10, 600, 100);
+
 	let imgData = createImageData(100, 500);
 
 	mapImageData(imgData, pickColor);
