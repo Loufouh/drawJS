@@ -8,9 +8,7 @@ function drawShape(ctx=targetContext) {
 		ctx.fill();
 	if(isStroking)
 		ctx.stroke();
-}
-
-function fill(color, ctx=targetContext) {
+} function fill(color, ctx=targetContext) {
 	if( !(color instanceof Color) )
 		color = new Color(color);
 
@@ -54,4 +52,8 @@ function miterLimit(value, ctx=targetContext) {
 
 function setLineDash(segments, ctx=targetContext) {
 	ctx.setLineDash(segments);
+}
+
+function getLineDash(ctx=targetContext) {
+	return ctx.getLineDash();
 }
