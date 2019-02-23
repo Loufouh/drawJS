@@ -17,7 +17,7 @@ function init() {
 
 	let imgData = createImageData(100, 500);
 
-	mapImageData(imgData, pickColr);
+	mapImageData(imgData, pickColor);
 	putImageData(imgData, 600, 100);
 }
 
