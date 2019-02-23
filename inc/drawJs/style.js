@@ -8,7 +8,9 @@ function drawShape(ctx=targetContext) {
 		ctx.fill();
 	if(isStroking)
 		ctx.stroke();
-} function fill(color, ctx=targetContext) {
+} 
+
+function fill(color, ctx=targetContext) {
 	if( !(color instanceof Color) )
 		color = new Color(color);
 
@@ -48,6 +50,10 @@ function lineJoin(type, ctx=targetContext) {
 
 function miterLimit(value, ctx=targetContext) {
 	ctx.miterLimit = value;
+}
+
+function lineDashOffset(value, ctx=targetContext) {
+	ctx.lineDashOffset = value;
 }
 
 function setLineDash(segments, ctx=targetContext) {
