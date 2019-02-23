@@ -37,6 +37,10 @@ function lineCap(type, ctx=targetContext) {
 	ctx.lineCap = type;
 }
 
+function lineJoin(type, ctx=targetContext) {
+	ctx.lineJoin = type;
+}
+
 function drawShape(ctx=targetContext) {
 	if(isFilling)
 		ctx.fill();

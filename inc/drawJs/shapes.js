@@ -23,32 +23,35 @@ function circle(xCenter, yCenter, radius, ctx=targetContext) {
 function arc(xCenter, yCenter, radius, startAngle, stopAngle, counterClockwise=false, ctx=targetContext) {
 	ctx.beginPath();
 	ctx.arc(xCenter, yCenter, radius, startAngle, stopAngle);
-	ctx.closePath();
+
 	drawShape(ctx);
+
+	ctx.closePath();
 }
 
 function rect(xLeft, yTop, width, height, ctx=targetContext) {
 	ctx.beginPath();
 	ctx.rect(xLeft, yTop, width, height);
-	ctx.closePath();
+
 	drawShape(ctx);
+
+	ctx.closePath();
 }
 
 function grid(pos, scales, separators, dimensions) {
-	for(let i = pos.x ; i <= (pos.x + dimensions.x - 1); i += scales.x) {
+	rect(pos.x, pos.y, dimensions.x, dimensions.y);
+
+	for(let i = (pos.x + scales.x) ; i <= (pos.x + dimensions.x - 1); i += scales.x) {
 		line(i, pos.y, i, (pos.y + dimensions.y));
 		i += separators.x;
 		line(i, pos.y, i, (pos.y + dimensions.y));
 	}
 
-	for(let j = pos.y ; j <= (pos.y + dimensions.y - 1); j += scales.y) {
+	for(let j = (pos.y + scales.y) ; j <= (pos.y + dimensions.y - 1); j += scales.y) {
 		line(pos.x, j, (pos.x + dimensions.x), j);
 		j += separators.y;
 		line(pos.x, j, (pos.x + dimensions.x), j);
 	}
-
-	line(pos.x + dimensions.x, pos.y, pos.x + dimensions.x, pos.y + dimensions.y);
-	line(pos.x, pos.y + dimensions.y, pos.x + dimensions.x, pos.y + dimensions.y);
 }
 
 
@@ -56,8 +59,10 @@ function line(x1, y1, x2, y2, ctx=targetContext) {
 	ctx.beginPath();
 	ctx.moveTo(x1, y1);
 	ctx.lineTo(x2, y2);
-	ctx.closePath();
+
 	drawShape(ctx);
+
+	ctx.closePath();
 }
 
 

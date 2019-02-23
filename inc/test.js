@@ -10,6 +10,9 @@ function init() {
 
 	background(Color.hsl(200, 100, 10));
 	stroke(Color.rgb(255));
+	strokeWeight(3);
+	lineJoin('round');
+
 	grid(new Vector(100, 100), new Vector(51, 51), new Vector(0, 0), new Vector(400, 400))
 
 	let imgData = createImageData(100, 500);
