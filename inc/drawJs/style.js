@@ -10,6 +10,10 @@ function drawShape(ctx=targetContext) {
 		ctx.stroke();
 } 
 
+function createRadialGradient(x1, y1, r1, x2, y2, r2, ctx=targetContext) {
+	return ctx.createRadialGradient(x1, y1, r1, x2, y2, r2, ctx=targetContext);
+}
+
 function createLinearGradient(x1, y1, x2, y2, ctx=targetContext) {
 	return ctx.createLinearGradient(x1, y1, x2, y2);
 }
