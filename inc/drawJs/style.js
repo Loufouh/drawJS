@@ -41,6 +41,10 @@ function lineJoin(type, ctx=targetContext) {
 	ctx.lineJoin = type;
 }
 
+function miterLimit(value, ctx=targetContext) {
+	ctx.miterLimit = value;
+}
+
 function drawShape(ctx=targetContext) {
 	if(isFilling)
 		ctx.fill();
