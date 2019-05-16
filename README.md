@@ -33,7 +33,7 @@ There are two ways to create a color :
 #### RGB/RGBA
 If you don't know the RGBA color system, this Wikipedia page will help you: 
 [RGBA color space](https://en.wikipedia.org/wiki/RGBA_color_space).<br>
-The complete way to create a rgba color is to specify all the parameters in the constructor `Color(r, g, b, a, type)` :
+The complete way to create a RGBA color is to specify all the parameters in the constructor `Color(r, g, b, a, type)` :
 ```javascript
 let color = new Color(255, 52, 52, 1, ColorType.RGB);
 ```
@@ -45,7 +45,7 @@ But hopefully, there are some shortcuts:
 `new Color(255, 52)` → `new Color(255, 52, 52)`
 
 #### HSL/HSLA
-There is a Wikipedia page about the hsla system: [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV).<br>
+There is a Wikipedia page about the HSLA system: [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV).<br>
 This time, there are no shortcuts, you have to specify all of the parameters each time `new Color(h, s, l, a, type)`:
 ```javascript
 let color = new Color(240, 100, 60, ColorType.HSL);
@@ -53,4 +53,4 @@ let color = new Color(240, 100, 60, ColorType.HSL);
 
 ### Draw on the canvas
 To draw on the canvas, you can first define the colors (the default color is the black). To define the color of the stroke, you have to you use `stroke(color)`, and to define the color that will fill the shape, you have to use `fill(color)`. If you don't want to draw the stroke or to fill the shape, you can use `noFill()` and `noStroke()` (to draw again, you just have to specify color).<br><br>
-Two other functions use the color: `background(color)` and `border(color)`, the first fill the whole canvas with the specified color, and the other one will outline it.
+Two other functions use the color: `background(color)` and `border(color)`, the first fills the whole canvas with the specified color, and the other one will outline it.
