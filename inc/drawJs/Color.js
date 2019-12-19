@@ -15,7 +15,7 @@ class Color {
 			this.l = c;
 			this.a = d;
 		} else 
-			return ("The type isn't defined !" , new Color(255));
+			return error("The type isn't defined !" , new Color(255));
 	}
 
 	toString() {
