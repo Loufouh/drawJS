@@ -50,7 +50,7 @@ function drawImageDataTest() {
 }
 
 function drawGradientTest() {
-    let linearGradient = createRadialGradient(
+    let radialGradient = createRadialGradient(
         300,
         600,
         20,
@@ -59,11 +59,11 @@ function drawGradientTest() {
         90
     );
 
-    linearGradient.addColorStop(0, 'rgb(255, 10, 10)');
-    linearGradient.addColorStop(0.1, 'rgb(100, 255, 10)');
-    linearGradient.addColorStop(1, 'hsl(200, 100%, 10%)');
+    radialGradient.addColorStop(0, 'rgb(255, 10, 10)');
+    radialGradient.addColorStop(0.1, 'rgb(100, 255, 10)');
+    radialGradient.addColorStop(1, 'hsl(200, 100%, 10%)');
 
-    fillGradient(linearGradient);
+    fillGradient(radialGradient);
     noStroke();
 
     circle(300, 600, 90);
