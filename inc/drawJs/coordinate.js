@@ -2,7 +2,7 @@
 
 /**
  * Reset all transformations
- * @param ctx The canvas context.
+ * @param ctx The canvas' context.
  */
 function resetTransform(ctx = targetContext) {
     setTransform(
@@ -24,7 +24,7 @@ function resetTransform(ctx = targetContext) {
  * @param verticalScaling The vertical scaling.
  * @param horizontalTranslation The vertical translation.
  * @param verticalTranslation The vertical translation.
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function setTransform(horizontalScaling, horizontalSkewing, verticalSkewing, verticalScaling, horizontalTranslation, verticalTranslation, ctx = targetContext) {
     ctx.setTransform(
@@ -41,7 +41,7 @@ function setTransform(horizontalScaling, horizontalSkewing, verticalSkewing, ver
  * Apply a translation.
  * @param x The x translation.
  * @param y The y translation.
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function translate(x, y, ctx = targetContext) {
     ctx.translate(x, y);
@@ -50,7 +50,7 @@ function translate(x, y, ctx = targetContext) {
 /**
  * Apply a clockwise rotation (the rotation point is the origin of the canvas, we can use a translation to change it).
  * @param angle The angle of the rotation (in radians).
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function rotate(angle, ctx = targetContext) {
     ctx.rotate(angle);
@@ -60,7 +60,7 @@ function rotate(angle, ctx = targetContext) {
  * Apply a scaling transformation.
  * @param x The x scaling.
  * @param y The y scaling.
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function scale(x, y, ctx = targetContext) {
     ctx.scale(x, y);
@@ -68,7 +68,7 @@ function scale(x, y, ctx = targetContext) {
 
 /**
  * Save the current transformations (use restore() to get it back).
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function save(ctx = targetContext) {
     ctx.save();
@@ -76,7 +76,7 @@ function save(ctx = targetContext) {
 
 /**
  * Restore transformations (previously registered with save()).
- * @param ctx The context.
+ * @param ctx The canvas' context.
  */
 function restore(ctx = targetContext) {
     ctx.restore();
