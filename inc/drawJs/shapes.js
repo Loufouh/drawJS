@@ -143,7 +143,7 @@ function line(x1, y1, x2, y2, ctx=targetContext) {
  * @param sWidth The width of the source image sub-rectangle.
  * @param sHeight The height of the source image sub-rectangle.
  * @param dx The x coordinate on the canvas (based on the top left corner).
- * @param dy The y coordinate on the canvas (basd on the top left corner).
+ * @param dy The y coordinate on the canvas (based on the top left corner).
  * @param dWidth The width of the image on the canvas.
  * @param dHeight The height of the image on the canvas.
  * @param ctx The canvas' context.
