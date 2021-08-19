@@ -4,21 +4,21 @@
  * Do an action for each pixel of an image's data.
  * @param imgData The image's data.
  * @param func The function to apply.
- * @param use2DCoordinates True if the function needs x and y, false if it needs pixel index.
+ * @param use2DCoordinates True if the function needs x and y, false if it needs pixel's index.
  */
-function foreachImageData(imgData, func, use2DCoordinates=true) {
-	foreachImageDataRect(0, 0, imgData.width, imgData.height, imgData, func, use2DCoordinates);
+function foreachImageData(imgData, func, use2DCoordinates = true) {
+    foreachImageDataRect(0, 0, imgData.width, imgData.height, imgData, func, use2DCoordinates);
 }
 
 /**
  * Map each pixel of an image's data.
  * @param imgData The image's data.
  * @param func The function to apply (it has to return a Color object).
- * @param use2DCoordinates True if the function needs x and y, false if it needs pixel index.
+ * @param use2DCoordinates True if the function needs x and y, false if it needs pixel's index.
  * @returns {*} The new image's data.
  */
-function mapImageData(imgData, func, use2DCoordinates=true) {
-	return mapImageDataRect(0, 0, imgData.width, imgData.height, imgData, func, use2DCoordinates);
+function mapImageData(imgData, func, use2DCoordinates = true) {
+    return mapImageDataRect(0, 0, imgData.width, imgData.height, imgData, func, use2DCoordinates);
 }
 
 /**
@@ -29,24 +29,21 @@ function mapImageData(imgData, func, use2DCoordinates=true) {
  * @param height The height of the region.
  * @param imgData The image's data.
  * @param func The function to apply.
- * @param use2DCoordinates True if the function needs x and y, false if it needs pixel index.s
+ * @param use2DCoordinates True if the function needs x and y, false if it needs pixel's index.
  */
-function foreachImageDataRect(posX, posY, width, height, imgData, func, use2DCoordinates=true) {
-	if(use2DCoordinates) {
-		mapImageDataRect(posX, posY, width, height, imgData, (pixel, x, y) => {
-
-			func(pixel, x, y);
-			return pixel;
-
-		}, use2DCoordinates)
-	} else {
-		mapImageDataRect(posX, posY, width, height, imgData, (pixel, x, y) => {
-
-			func(pixel, x, y);
-			return pixel;
-
-		}, use2DCoordinates);
-	}
+function foreachImageDataRect(posX, posY, width, height, imgData, func, use2DCoordinates = true) {
+    mapImageDataRect(
+        posX,
+        posY,
+        width,
+        height,
+        imgData,
+        (pixel, x, y) => { // If use2DCoordinates, x will be the index and y will be undefined
+            func(pixel, x, y);
+            return pixel;
+        },
+        use2DCoordinates
+    );
 }
 
 /**
@@ -57,27 +54,33 @@ function foreachImageDataRect(posX, posY, width, height, imgData, func, use2DCoo
  * @param height The height of the region.
  * @param imgData The image's data.
  * @param func The function to apply (it has to return a Color object).
- * @param use2DCoordinates True if the function needs x and y, false if it needs pixel index.s
+ * @param use2DCoordinates True if the function needs x and y, false if it needs pixel's index.
  * @returns {*} The new image's data.
  */
-function mapImageDataRect(posX, posY, width, height, imgData, func, use2DCoordinates=true) {
-	if( ( posX < 0 || posX + width > imgData.width ) ||
-	    ( posY < 0 || posY + height > imgData.height ) )
-		return error("The position and the dimensions precised don't match with imgData's dimensions.", imgData);
-	
-	if( (use2DCoordinates && func(new Color(0), 0, 0) === undefined ) || 
-	    (!use2DCoordinates && func(new Color(0), 0, 0) === undefined) ) 
-		return error("The output of func is undefined.", imgData)
+function mapImageDataRect(posX, posY, width, height, imgData, func, use2DCoordinates = true) {
+    if (
+        (posX < 0 || posX + width > imgData.width) ||
+        (posY < 0 || posY + height > imgData.height)
+    ) {
+        return error("The position and the dimensions precised don't match with imgData's dimensions.", imgData);
+    }
 
-	for(let x = posX; x < (posX + width); x++) {
-		for(let y = posY; y < (posY + height); y++) {
-			if(use2DCoordinates)
-				setPixel( x, y, imgData, func( getPixel(x, y, imgData), x, y) );
-			else
-				setPixel( x, y, imgData, func( getPixel(x, y, imgData), getPixelIndex(x, y, imgData) ) );
-		}
-	}
-	return imgData;
+    for (let x = posX; x < (posX + width); x++) {
+        for (let y = posY; y < (posY + height); y++) {
+            setPixel(
+                x,
+                y,
+                imgData,
+                func(
+                    getPixel(x, y, imgData),
+                    use2DCoordinates ? x : getPixelIndex(x, y),
+                    use2DCoordinates ? y : undefined
+                )
+            )
+        }
+    }
+
+    return imgData;
 }
 
 /**
@@ -88,7 +91,7 @@ function mapImageDataRect(posX, posY, width, height, imgData, func, use2DCoordin
  * @returns {Color} The pixel (as a Color object).
  */
 function getPixel(x, y, imgData) {
-	return getPixelByIndex( getPixelIndex(x, y, imgData) , imgData);
+    return getPixelByIndex(getPixelIndex(x, y, imgData), imgData);
 }
 
 /**
@@ -99,7 +102,7 @@ function getPixel(x, y, imgData) {
  * @param color The pixel to set (as a Color object).
  */
 function setPixel(x, y, imgData, color) {
-	setPixelByIndex(getPixelIndex(x, y, imgData), imgData, color);
+    setPixelByIndex(getPixelIndex(x, y, imgData), imgData, color);
 }
 
 /**
@@ -109,10 +112,10 @@ function setPixel(x, y, imgData, color) {
  * @param color The pixel to set (as a Color object).
  */
 function setPixelByIndex(i, imgData, color) {
-	imgData.data[i*4] = color.r;
-	imgData.data[i*4 + 1] = color.g;
-	imgData.data[i*4 + 2] = color.b;
-	imgData.data[i*4 + 3] = Math.floor(color.a*255);
+    imgData.data[i * 4] = color.r;
+    imgData.data[i * 4 + 1] = color.g;
+    imgData.data[i * 4 + 2] = color.b;
+    imgData.data[i * 4 + 3] = Math.floor(color.a * 255);
 }
 
 /**
@@ -121,11 +124,13 @@ function setPixelByIndex(i, imgData, color) {
  * @param imgData The image's data.
  * @returns {Color} The pixel to get (as a Color object).
  */
-function getPixelByIndex(i, imgData) {	
-	return new Color( imgData.data[i*4],
-			  imgData.data[i*4 + 1],
-			  imgData.data[i*4 + 2],
-			  Math.floor(imgData.data[i*4 + 3]/255) );
+function getPixelByIndex(i, imgData) {
+    return new Color(
+        imgData.data[i * 4],
+        imgData.data[i * 4 + 1],
+        imgData.data[i * 4 + 2],
+        imgData.data[i * 4 + 3] / 255
+    );
 }
 
 /**
@@ -136,12 +141,9 @@ function getPixelByIndex(i, imgData) {
  * @returns {*} The index of the pixel.
  */
 function getPixelIndex(x, y, imgData) {
-	if(x < 0 || x >= imgData.width)
-		return error("x has a wrong value ! (" + x + ")", 0);
-	if(y < 0 || y >= imgData.height)
-		return error("y has a wrong value ! (" + y + ")", 0);
-
-	return y*imgData.width + x;
+    return (x < 0 || x >= imgData.width) ? error("x has a wrong value ! (" + x + ")", 0) :
+        (y < 0 || y >= imgData.height) ? error("y has a wrong value ! (" + y + ")", 0) :
+            y * imgData.width + x
 }
 
 /**
@@ -151,8 +153,8 @@ function getPixelIndex(x, y, imgData) {
  * @param ctx The canvas' context.
  * @returns {ImageData} The image's data.
  */
-function createImageData(width, height, ctx=targetContext) {
-	return ctx.createImageData(width, height, ctx);
+function createImageData(width, height, ctx = targetContext) {
+    return ctx.createImageData(width, height, ctx);
 }
 
 /**
@@ -164,8 +166,8 @@ function createImageData(width, height, ctx=targetContext) {
  * @param ctx The canvas' context.
  * @returns {ImageData} The image's data.
  */
-function getImageData(x, y, width, height, ctx=targetContext) {
-	return ctx.getImageData(x, y, width, height);
+function getImageData(x, y, width, height, ctx = targetContext) {
+    return ctx.getImageData(x, y, width, height);
 }
 
 /**
@@ -175,8 +177,8 @@ function getImageData(x, y, width, height, ctx=targetContext) {
  * @param y The y coordinate (based on the top left corner).
  * @param ctx The canvas' context.
  */
-function putImageData(imgData, x, y, ctx=targetContext) {
-	ctx.putImageData(imgData, x, y);
+function putImageData(imgData, x, y, ctx = targetContext) {
+    ctx.putImageData(imgData, x, y);
 }
 
 /**
@@ -186,6 +188,5 @@ function putImageData(imgData, x, y, ctx=targetContext) {
  * @returns {*} The new image's data.
  */
 function fillImageData(imgData, value) {
-	return mapImageData(imgData, () => value);
+    return mapImageData(imgData, () => value);
 }
-
