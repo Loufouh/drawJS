@@ -12,6 +12,7 @@ window.onload = function () {
     drawLineTest();
     drawImageDataTest();
     drawGradientTest();
+    drawImageTest();
 }
 
 function drawGridTest() {
@@ -69,6 +70,33 @@ function drawGradientTest() {
     circle(300, 600, 90);
 }
 
+function drawImageTest() {
+    let img = new Image();
+    img.src = "image.png";
+
+    img.addEventListener("load", () => {
+        drawImage(
+            img,
+            610,
+            10,
+            80,
+            80
+        );
+
+        drawSubImage(
+            img,
+            100,
+            100,
+            300,
+            300,
+            700,
+            10,
+            80,
+            80
+        );
+    })
+}
+
 /**
  * Pick a random color.
  * @returns {Color} The picked color.
@@ -78,5 +106,5 @@ function pickColor() {
         51 * Math.floor(Math.random() * 6),
         51 * Math.floor(Math.random() * 6),
         51 * Math.floor(Math.random() * 6)
-	);
+    );
 }

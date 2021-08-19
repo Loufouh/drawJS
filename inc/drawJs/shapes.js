@@ -7,7 +7,7 @@ let targetContext;
  * @param ctx The canvas' context.
  */
 function setTargetContext(ctx) {
-	targetContext = ctx;
+    targetContext = ctx;
 }
 
 /**
@@ -15,8 +15,8 @@ function setTargetContext(ctx) {
  * @param weight The weight.
  * @param ctx The canvas' context.
  */
-function strokeWeight(weight, ctx=targetContext) {
-	ctx.lineWidth = weight;
+function strokeWeight(weight, ctx = targetContext) {
+    ctx.lineWidth = weight;
 }
 
 /**
@@ -24,16 +24,16 @@ function strokeWeight(weight, ctx=targetContext) {
  * @param color The color.
  * @param ctx The canvas' context.
  */
-function border(color, ctx=targetContext) {
-	noFill();
-	stroke(color, ctx);
-	rect(
-		0,
-		0,
-		ctx.canvas.width,
-		ctx.canvas.height,
-		ctx
-	);
+function border(color, ctx = targetContext) {
+    noFill();
+    stroke(color, ctx);
+    rect(
+        0,
+        0,
+        ctx.canvas.width,
+        ctx.canvas.height,
+        ctx
+    );
 }
 
 /**
@@ -43,16 +43,16 @@ function border(color, ctx=targetContext) {
  * @param radius The radius of the circle.
  * @param ctx The canvas' context.
  */
-function circle(xCenter, yCenter, radius, ctx=targetContext) {
-	arc(
-		xCenter,
-		yCenter,
-		radius,
-		0,
-		2*Math.PI,
-		false,
-		ctx
-	);
+function circle(xCenter, yCenter, radius, ctx = targetContext) {
+    arc(
+        xCenter,
+        yCenter,
+        radius,
+        0,
+        2 * Math.PI,
+        false,
+        ctx
+    );
 }
 
 /**
@@ -65,13 +65,13 @@ function circle(xCenter, yCenter, radius, ctx=targetContext) {
  * @param counterClockwise True to draw counter-clockwise, False to draw it clockwise.
  * @param ctx The canvas' context.
  */
-function arc(xCenter, yCenter, radius, startAngle, stopAngle, counterClockwise=false, ctx=targetContext) {
-	ctx.beginPath();
-	ctx.arc(xCenter, yCenter, radius, startAngle, stopAngle);
+function arc(xCenter, yCenter, radius, startAngle, stopAngle, counterClockwise = false, ctx = targetContext) {
+    ctx.beginPath();
+    ctx.arc(xCenter, yCenter, radius, startAngle, stopAngle);
 
-	drawShape(ctx);
+    drawShape(ctx);
 
-	ctx.closePath();
+    ctx.closePath();
 }
 
 /**
@@ -82,13 +82,13 @@ function arc(xCenter, yCenter, radius, startAngle, stopAngle, counterClockwise=f
  * @param height The height of the rectangle.
  * @param ctx The canvas' context.
  */
-function rect(xLeft, yTop, width, height, ctx=targetContext) {
-	ctx.beginPath();
-	ctx.rect(xLeft, yTop, width, height);
+function rect(xLeft, yTop, width, height, ctx = targetContext) {
+    ctx.beginPath();
+    ctx.rect(xLeft, yTop, width, height);
 
-	drawShape(ctx);
+    drawShape(ctx);
 
-	ctx.closePath();
+    ctx.closePath();
 }
 
 /**
@@ -99,21 +99,21 @@ function rect(xLeft, yTop, width, height, ctx=targetContext) {
  * @param dimensions The dimensions of the grid as a Vector.
  */
 function grid(pos, scales, separators, dimensions) {
-	rect(pos.x, pos.y, dimensions.x, dimensions.y);
+    rect(pos.x, pos.y, dimensions.x, dimensions.y);
 
-	// Draw vertical lines
-	for(let i = (pos.x + scales.x) ; i <= (pos.x + dimensions.x - 1); i += scales.x) {
-		line(i, pos.y, i, (pos.y + dimensions.y));
-		i += separators.x;
-		line(i, pos.y, i, (pos.y + dimensions.y));
-	}
+    // Draw vertical lines
+    for (let i = (pos.x + scales.x); i <= (pos.x + dimensions.x - 1); i += scales.x) {
+        line(i, pos.y, i, (pos.y + dimensions.y));
+        i += separators.x;
+        line(i, pos.y, i, (pos.y + dimensions.y));
+    }
 
-	// Draw horizontal lines
-	for(let j = (pos.y + scales.y) ; j <= (pos.y + dimensions.y - 1); j += scales.y) {
-		line(pos.x, j, (pos.x + dimensions.x), j);
-		j += separators.y;
-		line(pos.x, j, (pos.x + dimensions.x), j);
-	}
+    // Draw horizontal lines
+    for (let j = (pos.y + scales.y); j <= (pos.y + dimensions.y - 1); j += scales.y) {
+        line(pos.x, j, (pos.x + dimensions.x), j);
+        j += separators.y;
+        line(pos.x, j, (pos.x + dimensions.x), j);
+    }
 }
 
 
@@ -125,18 +125,42 @@ function grid(pos, scales, separators, dimensions) {
  * @param y2 The y coordinate of the second point.
  * @param ctx The canvas' context.
  */
-function line(x1, y1, x2, y2, ctx=targetContext) {
-	ctx.beginPath();
-	ctx.moveTo(x1, y1);
-	ctx.lineTo(x2, y2);
+function line(x1, y1, x2, y2, ctx = targetContext) {
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
 
-	drawShape(ctx);
+    drawShape(ctx);
 
-	ctx.closePath();
+    ctx.closePath();
 }
 
 /**
- * Draw an image.
+ * Draw an entire image
+ * @param img The image to draw.
+ * @param x The x coordinate on the canvas (based on the top left corner).
+ * @param y The y coordinate on the canvas (based on the top left corner).
+ * @param width The width of the image on the canvas.
+ * @param height The height of the image on the canvas.
+ * @param ctx The canvas' context
+ */
+function drawImage(img, x, y, width, height, ctx = targetContext) {
+    drawSubImage(
+        img,
+        0,
+        0,
+        img.width,
+        img.height,
+        x,
+        y,
+        width,
+        height,
+        ctx
+    );
+}
+
+/**
+ * Draw the sub part of an image.
  * @param img The image to draw.
  * @param sx The x coordinate of the source image sub-rectangle (based on the top left corner).
  * @param sy The y coordinate of the source image sub-rectangle (based on the top left corner).
@@ -148,10 +172,10 @@ function line(x1, y1, x2, y2, ctx=targetContext) {
  * @param dHeight The height of the image on the canvas.
  * @param ctx The canvas' context.
  */
-function drawImage(img, sx, sy, sWidth=img.width, sHeight=img.height, dx, dy, dWidth, dHeight, ctx=targetContext) {
-	if(dx === undefined) {
-		ctx.drawImage(img, sx, sy, sWidth, sHeight);
-	} else {
-		ctx.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
-	}
+function drawSubImage(img, sx, sy, sWidth = img.width, sHeight = img.height, dx, dy, dWidth, dHeight, ctx = targetContext) {
+    if (dx === undefined) {
+        ctx.drawImage(img, sx, sy, sWidth, sHeight);
+    } else {
+        ctx.drawImage(img, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
+    }
 }
