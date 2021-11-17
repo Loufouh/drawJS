@@ -119,7 +119,7 @@ function drawTextTest() {
  * @returns {Color} The picked color.
  */
 function pickColor() {
-    if(Math.random() < .5) {
+    if(Math.random() < .2) {
         return new Color(200, 16, 255);
     } else {
         return new Color(0, 34, 51);
