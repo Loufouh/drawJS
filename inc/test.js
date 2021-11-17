@@ -12,7 +12,6 @@ window.onload = function () {
     drawLineTest();
     drawImageDataTest();
     drawGradientTest();
-    drawImageTest();
     drawTextTest();
 }
 
@@ -37,10 +36,17 @@ function drawLineTest() {
     setLineDash([5, 10]);
 
     line(
-        10,
-        10,
+        500,
+        100,
         600,
         100
+    );
+
+    line(
+        500,
+        500,
+        600,
+        600
     );
 }
 
@@ -48,6 +54,7 @@ function drawImageDataTest() {
     let imgData = createImageData(100, 500);
 
     mapImageData(imgData, pickColor);
+
     putImageData(imgData, 600, 100);
 }
 
@@ -61,8 +68,7 @@ function drawGradientTest() {
         90
     );
 
-    radialGradient.addColorStop(0, 'rgb(255, 10, 10)');
-    radialGradient.addColorStop(0.1, 'rgb(100, 255, 10)');
+    radialGradient.addColorStop(0, 'rgb(200, 16, 255)');
     radialGradient.addColorStop(1, 'hsl(200, 100%, 10%)');
 
     fillGradient(radialGradient);
@@ -107,14 +113,15 @@ function drawTextTest() {
     font(100, 'monospace');
     text(100, 90, "DrawJS")
 }
+
 /**
  * Pick a random color.
  * @returns {Color} The picked color.
  */
 function pickColor() {
-    return new Color(
-        51 * Math.floor(Math.random() * 6),
-        51 * Math.floor(Math.random() * 6),
-        51 * Math.floor(Math.random() * 6)
-    );
+    if(Math.random() < .5) {
+        return new Color(200, 16, 255);
+    } else {
+        return new Color(0, 34, 51);
+    }
 }
