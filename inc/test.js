@@ -13,6 +13,7 @@ window.onload = function () {
     drawImageDataTest();
     drawGradientTest();
     drawImageTest();
+    drawTextTest();
 }
 
 function drawGridTest() {
@@ -97,6 +98,15 @@ function drawImageTest() {
     })
 }
 
+function drawTextTest() {
+    noFill();
+    stroke(new Color(200, 16, 255));
+    lineJoin('round')
+    setLineDash([])
+
+    font(100, 'monospace');
+    text(100, 90, "DrawJS")
+}
 /**
  * Pick a random color.
  * @returns {Color} The picked color.
