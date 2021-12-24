@@ -1,5 +1,5 @@
-import {drawJS, style, color, shapes, imageData, text} from "./node_modules/@louis700/drawjs/index.js";
-import {vector} from "./node_modules/@louis700/mathjs/index.js";
+import {drawJS, style, color, shapes, imageData, text} from "../node_modules/@louis700/drawjs/index.js";
+import {vector} from "../node_modules/@louis700/mathjs/index.js";
 
 "use strict";
 
