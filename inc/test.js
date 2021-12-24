@@ -1,12 +1,15 @@
+import {drawJS, style, color, shapes, imageData, text} from "./node_modules/@louis700/drawjs/index.js";
+import {vector} from "./node_modules/@louis700/mathjs/index.js";
+
 "use strict";
 
 let canvas;
 
 window.onload = function () {
     canvas = document.querySelector("canvas");
-    setTargetContext(canvas.getContext("2d"));
+    drawJS.setTargetContext(canvas.getContext("2d"));
 
-    background(Color.hsl(200, 100, 10));
+    style.background(color.Color.hsl(200, 100, 10));
 
     drawGridTest();
     drawLineTest();
@@ -16,33 +19,33 @@ window.onload = function () {
 }
 
 function drawGridTest() {
-    stroke(Color.rgb(255));
-    strokeWeight(3);
-    lineJoin('round');
+    style.stroke(color.Color.rgb(255));
+    shapes.strokeWeight(3);
+    style.lineJoin('round');
 
-    grid(
-        new Vector(100, 100),
-        new Vector(51, 51),
-        new Vector(0, 0),
-        new Vector(400, 400)
+    shapes.grid(
+        new vector.Vector(100, 100),
+        new vector.Vector(51, 51),
+        new vector.Vector(0, 0),
+        new vector.Vector(400, 400)
     )
 }
 
 function drawLineTest() {
-    stroke(Color.rgb(255));
-    strokeWeight(3);
+    style.stroke(color.Color.rgb(255));
+    shapes.strokeWeight(3);
 
-    lineDashOffset(2);
-    setLineDash([5, 10]);
+    style.lineDashOffset(2);
+    style.setLineDash([5, 10]);
 
-    line(
+    shapes.line(
         500,
         100,
         600,
         100
     );
 
-    line(
+    shapes.line(
         500,
         500,
         600,
@@ -51,15 +54,15 @@ function drawLineTest() {
 }
 
 function drawImageDataTest() {
-    let imgData = createImageData(100, 500);
+    let imgData = imageData.createImageData(100, 500);
 
-    mapImageData(imgData, pickColor);
+    imageData.mapImageData(imgData, pickColor);
 
-    putImageData(imgData, 600, 100);
+    imageData.putImageData(imgData, 600, 100);
 }
 
 function drawGradientTest() {
-    let radialGradient = createRadialGradient(
+    let radialGradient = style.createRadialGradient(
         300,
         600,
         20,
@@ -71,10 +74,10 @@ function drawGradientTest() {
     radialGradient.addColorStop(0, 'rgb(200, 16, 255)');
     radialGradient.addColorStop(1, 'hsl(200, 100%, 10%)');
 
-    fillGradient(radialGradient);
-    noStroke();
+    style.fillGradient(radialGradient);
+    style.noStroke();
 
-    circle(300, 600, 90);
+    shapes.circle(300, 600, 90);
 }
 
 function drawImageTest() {
@@ -82,7 +85,7 @@ function drawImageTest() {
     img.src = "image.png";
 
     img.addEventListener("load", () => {
-        drawImage(
+        shapes.drawImage(
             img,
             610,
             10,
@@ -90,7 +93,7 @@ function drawImageTest() {
             80
         );
 
-        drawSubImage(
+        shapes.drawSubImage(
             img,
             100,
             100,
@@ -105,23 +108,23 @@ function drawImageTest() {
 }
 
 function drawTextTest() {
-    noFill();
-    stroke(new Color(200, 16, 255));
-    lineJoin('round')
-    setLineDash([])
+    style.noFill();
+    style.stroke(new color.Color(200, 16, 255));
+    style.lineJoin('round')
+    style.setLineDash([])
 
-    font(100, 'monospace');
-    text(100, 90, "DrawJS")
+    text.font(100, 'monospace');
+    text.text(100, 90, "DrawJS")
 }
 
 /**
  * Pick a random color.
- * @returns {Color} The picked color.
+ * @returns {color.Color} The picked color.
  */
 function pickColor() {
     if(Math.random() < .2) {
-        return new Color(200, 16, 255);
+        return new color.Color(200, 16, 255);
     } else {
-        return new Color(0, 34, 51);
+        return new color.Color(0, 34, 51);
     }
 }

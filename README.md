@@ -1,4 +1,4 @@
-# drawJS
+# drawJS [Old doc]
 This library has been created to draw easier on a canvas, you can target one and then don't have to create a global variable to save its context!
 
 ## How to use it?
