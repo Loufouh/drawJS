@@ -59,6 +59,8 @@ But hopefully, there are some shortcuts:
 There is a Wikipedia page about the HSLA system: [HSL and HSV](https://en.wikipedia.org/wiki/HSL_and_HSV). <br>
 This time, there are no shortcuts, you have to specify all of the parameters each time `new Color(h, s, l, a, type)`:
 ```javascript
+import {color as color_m} from "./node_modules/@louis700/drawjs/index";
+
 let color = new color_m.Color(240, 100, 60, ColorType.HSL);
 ```
 
