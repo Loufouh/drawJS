@@ -23,12 +23,11 @@ function drawGridTest() {
     shapes.strokeWeight(3);
     style.lineJoin('round');
 
-    shapes.grid(
-        new vector.Vector(100, 100),
-        new vector.Vector(51, 51),
-        new vector.Vector(0, 0),
-        new vector.Vector(400, 400)
-    )
+  shapes.simpleGrid(
+      new vector.Vector(100, 100),
+      new vector.Vector(8, 8),
+      new vector.Vector(400, 400)
+  );
 }
 
 function drawLineTest() {
