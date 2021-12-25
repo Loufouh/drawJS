@@ -89,7 +89,7 @@ function drawImageTest() {
             img,
             canvas.width - 1.8*80,
             10,
-            1.8*80,
+            144,
             80
         );
 
@@ -100,7 +100,7 @@ function drawImageTest() {
             img,
             10,
             0,
-            1.8*80,
+            144,
             80
         );
 
