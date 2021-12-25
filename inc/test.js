@@ -1,4 +1,4 @@
-import {drawJS, style, color, shapes, imageData, text} from "../node_modules/@louis700/drawjs/index.js";
+import {drawJS, style, color, shapes, imageData, text, coordinate} from "../node_modules/@louis700/drawjs/index.js";
 import {vector} from "../node_modules/@louis700/mathjs/index.js";
 
 "use strict";
@@ -16,6 +16,7 @@ window.onload = function () {
     drawImageDataTest();
     drawGradientTest();
     drawTextTest();
+    drawImageTest();
 }
 
 function drawGridTest() {
@@ -23,11 +24,11 @@ function drawGridTest() {
     shapes.strokeWeight(3);
     style.lineJoin('round');
 
-  shapes.simpleGrid(
-      new vector.Vector(100, 100),
-      new vector.Vector(8, 8),
-      new vector.Vector(400, 400)
-  );
+    shapes.simpleGrid(
+        new vector.Vector(100, 100),
+        new vector.Vector(8, 8),
+        new vector.Vector(400, 400)
+    );
 }
 
 function drawLineTest() {
@@ -81,29 +82,30 @@ function drawGradientTest() {
 
 function drawImageTest() {
     let img = new Image();
-    img.src = "image.png";
+    img.src = "assets/image.png";
 
     img.addEventListener("load", () => {
         shapes.drawImage(
             img,
-            610,
+            canvas.width - 1.8*80,
             10,
-            80,
+            1.8*80,
             80
         );
 
-        shapes.drawSubImage(
+        coordinate.translate(1.8*80, canvas.height);
+        coordinate.rotate(Math.PI);
+
+        shapes.drawImage(
             img,
-            100,
-            100,
-            300,
-            300,
-            700,
             10,
-            80,
+            0,
+            1.8*80,
             80
         );
-    })
+
+        coordinate.resetTransform();
+    });
 }
 
 function drawTextTest() {
@@ -121,7 +123,7 @@ function drawTextTest() {
  * @returns {color.Color} The picked color.
  */
 function pickColor() {
-    if(Math.random() < .2) {
+    if (Math.random() < .2) {
         return new color.Color(200, 16, 255);
     } else {
         return new color.Color(0, 34, 51);
